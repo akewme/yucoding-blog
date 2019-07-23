@@ -1,2 +1,0 @@
-# yucoding-blog
-yucoding blog

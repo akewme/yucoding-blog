@@ -29,14 +29,21 @@ class AuthController extends Controller
             return $authUser;
         }
         else{
-            $data = User::create([
-                'name'     => $user->name,
-                'avatar'     => $user->avatar,
-                'username'     => time(),
-                'email'    => !empty($user->email)? $user->email : '' ,
-                'provider' => $provider,
-                'provider_id' => $user->id
-            ]);
+
+            $checkemail= User::where('email', $user->email)->first();
+            
+            if($checkemail){
+                return $checkemail;
+            }else{
+                $data = User::create([
+                    'name'     => $user->name,
+                    'avatar'     => $user->avatar,
+                    'username'     => time(),
+                    'email'    => !empty($user->email)? $user->email : '' ,
+                    'provider' => $provider,
+                    'provider_id' => $user->id
+                ]);
+            }
             return $data;
         }
     }

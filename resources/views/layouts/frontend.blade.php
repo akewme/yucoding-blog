@@ -35,15 +35,32 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav justify-content-end">
-							<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-							{{-- <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
-							<li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li> --}}
-							<li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-							<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+							<li class="nav-item @if(Request::is('/')) active @endif ">
+								<a class="nav-link" href="/">Home</a>
+							</li>
+							<li class="nav-item @if(Request::is('about')) active @endif">
+								<a class="nav-link" href="/about">About</a>
+							</li>
+							<li class="nav-item
+							<?php
+							if( !Request::is('/') AND 
+								!Request::is('about') AND 
+								!Request::is('contact') AND
+								!Request::is('shop')
+								)
+								echo "active";
+							?>
+							">
+								<a class="nav-link" href="/blog">Blog</a>
+							</li>
+							<li class="nav-item @if(Request::is('shop')) active @endif">
+								<a class="nav-link" href="/shop">Shop</a>
+							</li>
+							<li class="nav-item @if(Request::is('contact')) active @endif">
+								<a class="nav-link" href="/contact">Contact</a>
+							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="/login">
 										<button class="btn btn-outline-primary">
@@ -57,7 +74,6 @@
 			</nav>
 		</div>
 	</header>
-	<!--================ End Header Area =================-->
 	@yield('content')
 	<!--================Footer Area =================-->
 	<footer class="footer_area">
@@ -110,6 +126,22 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="/frontend/js/theme.js"></script>
 
 	@yield("js-after")
+
+	<script>
+		function search(key){
+			window.location.href = "/s/"+key;
+		}
+		$("#search-input").keypress(function(e) {
+			if(e.which == 13) {
+				search($(this).val())
+			}
+		})
+
+		$("#search-btn").click(function() {
+			search($("#search-input").val())
+		})
+
+	</script>
 	
 </body>
 

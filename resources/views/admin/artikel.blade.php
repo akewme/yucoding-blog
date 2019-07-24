@@ -5,7 +5,6 @@
 
 @push('css-after')
 <link  href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
 <style>
 .note-editor{
   background: #ffff;
@@ -14,7 +13,6 @@ z-index: 10000000000000
 @endpush
 @push('js-after')
 <!-- include summernote css/js -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script>
     $(function() {

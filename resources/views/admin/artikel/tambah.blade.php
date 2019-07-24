@@ -6,20 +6,14 @@
 
 
 @push('css-after')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
 <style>
 .note-editor{
   background: #ffff;
-z-index: 10000000000000
-}</style>
+  z-index: 10000000000000
+}
+</style>
 @endpush
-@push('js-after')
-<!-- include summernote css/js -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-<script>
-$("#edit-isi").summernote()
-</script>
-@endpush
+
 
 @section('content')
 <div class="container">
@@ -53,3 +47,9 @@ $("#edit-isi").summernote()
         </form>
 </div>
   @endsection
+
+@push('js-after')
+    <script>
+        $("#edit-isi").summernote()
+    </script>
+@endpush

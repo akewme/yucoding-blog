@@ -110,10 +110,26 @@ class ArtikelController extends Controller
     // Single Page Artikel
 
     public function singleArtikel($slug){
-        
         $artikel =  artikel::where("slug",$slug)->first();
-
         return view("frontend.single-blog",compact("artikel"));
+    }
+
+
+    public function kategoriArtikel($slug){
+
+        $artikels =  artikel::
+                    where("kategori",$slug)
+                    ->paginate(10);
+        return view("frontend.kategori",compact("artikels"));
+    }
+
+    public function searchArtikel($search){
+
+        $artikels =  artikel::
+                    where("judul","like", "%".$search."%")
+                    ->orWhere("kategori","like","%".$search."%")
+                    ->paginate(10);
+        return view("frontend.search",compact("artikels"));
     }
 
 }

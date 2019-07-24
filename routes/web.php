@@ -10,6 +10,15 @@ Route::get('/blog', function () {
 });
 
 
+Route::get('/about', function () {
+    return view('frontend.about');
+});
+
+Route::get('/contact', function () {
+    return view('frontend.contact');
+});
+
+
 Auth::routes();
 
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
@@ -28,6 +37,11 @@ Route::middleware(['auth'])->group(function () {
 
 
 });
+
 include "group/komentar.php";
+
+Route::get("/c/{slug}","ArtikelController@kategoriArtikel");
+
+Route::get("/s/{search}","ArtikelController@searchArtikel");
 
 Route::get("/{slug}","ArtikelController@singleArtikel");
